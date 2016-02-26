@@ -15,4 +15,8 @@
     shell: sudo npm install grunt-cli -g
   - name: copy private ssh key
     sudo: no
-    copy: src=id_rsa dest=~/.ssh/id_rsa.ansible
+    copy: src=id_rsa dest=~/.ssh/id_rsa
+  - name: copy public ssh key
+    sudo: no
+    copy: src=id_rsa.pub dest=~/.ssh/id_rsa.pub
+
