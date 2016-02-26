@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  sudo: yes
+  tasks:
+  - name: install tools
+    apt: name={{ item }} update_cache=yes cache_valid_time=3600
+    with_items:
+      - curl
+      - g++
+  - name: add nodejs to apt repository
+    shell: curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+  - name: install nodejs
+    apt: name=nodejs update_cache=yes cache_valid_time=3600
+  - name: install grunt-cli
+    shell: sudo npm install grunt-cli -g
+  - name: copy private ssh key
+    sudo: no
+    copy: src=id_rsa dest=~/.ssh/id_rsa.ansible
