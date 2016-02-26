@@ -13,6 +13,9 @@
     apt: name=nodejs update_cache=yes cache_valid_time=3600
   - name: install grunt-cli
     shell: sudo npm install grunt-cli -g
+  - name: create ~/.ssh directory
+    sudo: no
+    file: path=~/.ssh state=directory
   - name: copy private ssh key
     sudo: no
     copy: src=id_rsa dest=~/.ssh/id_rsa
